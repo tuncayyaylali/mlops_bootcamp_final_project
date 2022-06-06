@@ -1,0 +1,14 @@
+fastapi[all]
+uvicorn[standard]
+pandas
+numpy
+datetime
+lightgbm
+jupyterlab
+matplotlib
+seaborn
+sklearn
+mlflow
+boto3
+timedelta
+dotenv
