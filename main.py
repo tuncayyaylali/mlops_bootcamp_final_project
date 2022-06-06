@@ -43,9 +43,9 @@ def make_hourly_prediction(model, df, request):
 def detect_drift(data1, data2):
     ks_result = ks_2samp(data1, data2)
     if ks_result.pvalue < 0.05:
-        return "Drift exits"
+        return "Drift exist"
     else:
-        return "No drift"
+        return "Drift doesn't exist"
     
 @app.post("/daily_prediction")
 def predict_electricy_consumption(request: Daily_Electricity):
