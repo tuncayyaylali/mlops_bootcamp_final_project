@@ -11,4 +11,3 @@ sklearn
 mlflow
 boto3
 timedelta
-dotenv
