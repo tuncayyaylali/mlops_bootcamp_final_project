@@ -21,9 +21,10 @@ def check(start,end):
 def prediction(model, df, Start_Date, Hour, Number_of_Days=0):
     Start_Date = Start_Date+" "+Hour
     Start_Date = pd.to_datetime(Start_Date)
+    Main_Date = pd.to_datetime("2022-01-01 00:00:00")
     Finish_Date = Start_Date + timedelta(days=Number_of_Days)
     Finish_Date = pd.to_datetime(Finish_Date)
-    prediction_interval = pd.DataFrame(check(Start_Date, Finish_Date), columns=["Tarih_Saat"])
+    prediction_interval = pd.DataFrame(check(Main_Date, Finish_Date), columns=["Tarih_Saat"])
     prediction_interval["Tüketim Miktarı (MWh)"]=np.nan
     prediction_total = pd.concat([df, prediction_interval], axis=0, ignore_index=True)
     prediction_dataset = helpers.main(prediction_total)

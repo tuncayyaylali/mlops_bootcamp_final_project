@@ -17,6 +17,8 @@ from dotenv import load_dotenv
 from datetime import timedelta
 from mlflow.tracking import MlflowClient
 import helpers
+import eda
+import feature_importance
 
 # Settings
 load_dotenv(dotenv_path=".env")
@@ -42,6 +44,9 @@ def load_df_from_s3(bucket, key, s3_client, index_col=None, usecols=None, sep=",
 
 # Loading Dataset From S3
 df = load_df_from_s3(bucket="vbo-mlops-bootcamp-ty", key="datasets/electricity-consumption.csv", s3_client=client)
+
+# EDA
+eda.check_df(df)
 
 # Feature Engineering
 df = helpers.main(df)
@@ -121,3 +126,6 @@ smape(np.expm1(final_pred_val), np.expm1(y_all))
 # Saving Model Object
 import joblib
 joblib.dump(final_model, "saved_models/LightGBM_Model.pkl")
+
+# Feature Importance
+feature_importance.plot_lgb_importances(model, plot=True)
